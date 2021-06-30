@@ -5,27 +5,23 @@ require './lib/nytimes'
 
 RSpec.describe Nytimes do
 
+  hash = Nytimes::DATA
 
-  it 'test_it_can_get_copyright' do
-    @hash = Nytimes::DATA
-    # binding.pry
-    result = @hash[:copyright]
+  it 'can test_it_can_get_copyright' do
+    result = hash[:copyright]
 
     expect(result).to eq("Copyright (c) 2018 The New York Times Company. All Rights Reserved.")
   end
 
-  it 'test_it_can_get_array_of_stories' do
-    @hash = Nytimes::DATA
-    result = @hash[:results]
+  it 'can test_it_can_get_array_of_stories' do
+    result = hash[:results]
 
     expect(result.is_a?(Array)).to eq(true)
     expect(result.count).to eq(44)
   end
 
-  it 'test_it_can_get_all_stories_with_subsection_of_politics' do
-    @hash = Nytimes::DATA
-
-    result = @hash[:results].find_all do |result|
+  it 'can test_it_can_get_all_stories_with_subsection_of_politics' do
+    result = hash[:results].find_all do |result|
       result[:subsection] == "Politics"
     end
 
